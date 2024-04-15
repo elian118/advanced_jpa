@@ -151,25 +151,36 @@ public class ProductRepositoryTest {
         printProductNames(productList);
     }
 
+    @Test
+    public void auditingTest() {
+        Product product = new Product();
+        product.setName("펜");
+        product.setPrice(1000);
+        product.setStock(100);
+
+        Product savedProduct = productRepository.save(product);
+
+        System.out.println("Product Name: " + savedProduct.getName());
+        System.out.println("createdAt: " + savedProduct.getCreatedAt());
+    }
+
     void printProducts(List<Product> productList) {
-        for (Product product : productList) {
+        productList.forEach(product -> {
             System.out.println("--------------------");
-            System.out.println();
             System.out.println("Product Number: " + product.getNumber());
             System.out.println("Product Name: " + product.getName());
             System.out.println("Product Price: " + product.getPrice());
             System.out.println("Product Stock: " + product.getStock());
-            System.out.println();
             System.out.println("--------------------");
-        }
+        });
     }
 
     void printProductNames(List<String> productList) {
-        for (String product: productList) {
+        productList.forEach(product -> {
             System.out.println("--------------------");
             System.out.println("Product Name: " + product);
             System.out.println("--------------------");
-        }
+        });
     }
 }
 
